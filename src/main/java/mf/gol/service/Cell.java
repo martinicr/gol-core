@@ -9,39 +9,38 @@ import static java.util.stream.Collectors.joining;
 
 public class Cell {
 
-    private List<Cell> neighbours;
+//    private List<Cell> neighbours;
     private int x;
     private int y;
     private CellStatus cellStatus;
 
-    public Cell(int x, int y, CellStatus cellStatus) {
-        this(x, y, cellStatus, new ArrayList<>());
-    }
+//    public Cell(int x, int y, CellStatus cellStatus) {
+//        this(x, y, cellStatus, new ArrayList<>());
+//    }
 
-    public Cell(int x, int y, CellStatus cellStatus, List<Cell> neighbours) {
+    public Cell(int x, int y, CellStatus cellStatus) {
         this.x = x;
         this.y = y;
         this.cellStatus = requireNonNull(cellStatus);
-        this.neighbours = requireNonNull(neighbours);
     }
 
-    public int getNumberOfNeighbours(){
-        return this.neighbours.size();
-    }
+//    public int getNumberOfNeighbours(){
+//        return this.neighbours.size();
+//    }
+//
+//    public int getNumberOfAliveNeighbours(){
+//        return (int) this.neighbours.stream()
+//                .filter(n -> n.getCellStatus() == CellStatus.ALIVE)
+//                .count();
+//    }
 
-    public int getNumberOfAliveNeighbours(){
-        return (int) this.neighbours.stream()
-                .filter(n -> n.getCellStatus() == CellStatus.ALIVE)
-                .count();
-    }
-
-    public List<Cell> getNeighbours() {
-        return neighbours;
-    }
-
-    public void setNeighbours(List<Cell> neighbours) {
-        this.neighbours = neighbours;
-    }
+//    public List<Cell> getNeighbours() {
+//        return neighbours;
+//    }
+//
+//    public void setNeighbours(List<Cell> neighbours) {
+//        this.neighbours = neighbours;
+//    }
 
     public int getX() {
         return x;
@@ -71,17 +70,17 @@ public class Cell {
         return this.cellStatus == CellStatus.ALIVE;
     }
 
-    public void addNeighbour(Cell neighbour){
-        this.neighbours.add(neighbour);
-    }
+//    public void addNeighbour(Cell neighbour){
+//        this.neighbours.add(neighbour);
+//    }
+
+//    public String getNeighboursCoordinatesToString(){
+//        return this.getNeighbours().stream()
+//                .map(n -> "{"+ n.getX() +", "+ n.getY() +"}")
+//                .collect(joining(", "));
+//    }
 
     public static Cell getInstance() {
-        return new Cell(0, 0, CellStatus.DEAD, new ArrayList<>());
-    }
-
-    public String getNeighboursCoordinatesToString(){
-        return this.getNeighbours().stream()
-                .map(n -> "{"+ n.getX() +", "+ n.getY() +"}")
-                .collect(joining(", "));
+        return new Cell(0, 0, CellStatus.DEAD);
     }
 }

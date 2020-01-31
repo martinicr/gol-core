@@ -24,9 +24,13 @@ public class Grid {
         }
     }
 
-    public Cell getCellNeighbours(int x, int y) {
-//        CellNeighbours cellNeighbours = new CellNeighbours();
-        Cell cell = Cell.getInstance();
+    public CellNeighbours getCellNeighbours(Cell cell) {
+        return this.getCellNeighbours(cell.getX(), cell.getY());
+    }
+
+    public CellNeighbours getCellNeighbours(int x, int y) {
+        CellNeighbours cellNeighbours = new CellNeighbours();
+
         for (int row = fromRow(x); row <= toRow(x); row++) {
             for (int column = fromColumn(y); column <= toColumn(y); column++) {
 //                System.out.println("row " + row + ", column " + column);
@@ -34,10 +38,10 @@ public class Grid {
                     System.out.println("SAME =>> x " + x + ", row " + row + ", y " + y + ", column " + column);
                     continue;
                 } else {
-//                    cellNeighbours.addNeighbour(this.gameGrid[row][column]);
                     Cell neighbour = ofNullable(this.gameGrid[row][column])
                             .orElse(new Cell(row, column, CellStatus.DEAD));
-                    cell.addNeighbour(neighbour);
+                    cellNeighbours.addNeighbour(neighbour);
+
 //                    if(this.gameGrid[row][column] == 1) {
 //                        cellNeighbours.addAliveNeighbour();
 //                    }
@@ -46,8 +50,9 @@ public class Grid {
         }
 //        System.out.println("Number of neighbours: " + cell.getNumberOfNeighbours() + ", " +
 //                "Alive: " + cell.getNumberOfAliveNeighbours());
-        return cell;
+        return cellNeighbours;
     }
+
 
     private int fromRow(int x) {
         return Math.max(x - 1, 0);
@@ -77,30 +82,4 @@ public class Grid {
         return this.totalOfCells;
     }
 
-//    class CellNeighbours {
-//
-//        private int totalNeighbours;
-//        private int aliveNeigbours;
-//
-//        public CellNeighbours() {
-//            this.totalNeighbours = 0;
-//            this.aliveNeigbours = 0;
-//        }
-//
-//        public void addNeighbour() {
-//            this.totalNeighbours++;
-//        }
-//
-//        public void addAliveNeighbour() {
-//            this.aliveNeigbours++;
-//        }
-//
-//        public int getTotalNeighbours() {
-//            return totalNeighbours;
-//        }
-//
-//        public int getAliveNeigbours() {
-//            return aliveNeigbours;
-//        }
-//    }
 }
