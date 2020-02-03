@@ -211,6 +211,20 @@ public class GridTest {
         assertThat(neighbours.getNeighboursCoordinatesToString()).isEqualTo("{1, 1}, {1, 2}, {1, 3}, {2, 1}, {2, 3}, {3, 1}, {3, 2}, {3, 3}");
     }
 
+    @Test
+    @DisplayName("5x4 Grid Get cell neighbours when cell position is 2,2")
+    void getCellNeighboursWhenGridIs6by5AndPositionIs_2_2() {
+        Grid grid = new Grid(5, 4);
+        Cell cell = mock(Cell.class);
+        given(cell.getX()).willReturn(2);
+        given(cell.getY()).willReturn(2);
+        grid.addCell(cell);
+        CellNeighbours neighbours = grid.getCellNeighbours(2, 2);
+        assertThat(neighbours.getNumberOfNeighbours()).isEqualTo(8);
+        assertThat(neighbours.getNumberOfAliveNeighbours()).isEqualTo(0);
+        assertThat(neighbours.getNeighboursCoordinatesToString()).isEqualTo("{1, 1}, {1, 2}, {1, 3}, {2, 1}, {2, 3}, {3, 1}, {3, 2}, {3, 3}");
+    }
+
     /**
      * 0 0 0 0 0
      * 0 0 0 0 0

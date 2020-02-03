@@ -48,13 +48,12 @@ public class Grid {
 
         for (int row = fromRow(x); row <= toRow(x); row++) {
             for (int column = fromColumn(y); column <= toColumn(y); column++) {
-//                System.out.println("row " + row + ", column " + column);
+                System.out.println("=> row " + row + ", column " + column);
                 if(row == x && column == y) {
                     System.out.println("SAME =>> x " + x + ", row " + row + ", y " + y + ", column " + column);
                     continue;
                 } else {
 //                    try {
-                        System.out.println("OTRO =>> x " + x + ", row " + row + ", y " + y + ", column " + column);
                         Cell neighbour = ofNullable(this.gameGrid[row][column])
                                 .orElse(new Cell(row, column, DEAD));
                         cellNeighbours.addNeighbour(neighbour);
@@ -101,7 +100,7 @@ public class Grid {
     }
 
     private int toRow(int x) {
-        return (x + 1 >= this.gameGrid.length) ? x : x + 1;
+        return (x + 1 >= this.rows) ? x : x + 1;
     }
 
     private int fromColumn(int y) {
@@ -109,7 +108,7 @@ public class Grid {
     }
 
     private int toColumn(int y) {
-        return (y + 1 >= this.gameGrid.length) ? y : y + 1;
+        return (y + 1 >= this.columns) ? y : y + 1;
     }
 
 }

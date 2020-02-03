@@ -126,12 +126,12 @@ public class GameOfLifeTest {
     /**
      * Initial Status
      *
-             * 0 0 0 0 0
-             * 0 0 0 0 0
-             * 0 0 0 0 0
-             * 0 0 0 0 0
-             * 0 0 0 0 0
-             */
+     * 0 0 0 0 0
+     * 0 0 0 0 0
+     * 0 0 0 0 0
+     * 0 0 0 0 0
+     * 0 0 0 0 0
+     */
     @Test
     @DisplayName("when a grid with all dead cells is passed next generation will be dead")
     void gridWillAllDeadCellsWillBeDeadInNextGeneration() {
