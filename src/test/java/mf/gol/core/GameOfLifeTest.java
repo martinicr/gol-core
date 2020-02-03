@@ -1,9 +1,12 @@
-package mf.gol.service;
+package mf.gol.core;
 
+import mf.gol.core.Cell;
+import mf.gol.core.GameOfLife;
+import mf.gol.core.Grid;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static mf.gol.service.CellStatus.*;
+import static mf.gol.core.CellStatus.*;
 import static org.assertj.core.api.Assertions.*;
 
 public class GameOfLifeTest {

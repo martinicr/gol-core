@@ -1,12 +1,4 @@
-package mf.gol.service;
-
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.mockito.BDDMockito.*;
-import static org.assertj.core.api.Assertions.*;
-import static mf.gol.service.CellStatus.*;
+package mf.gol.core;
 
 public class CellTest {
 

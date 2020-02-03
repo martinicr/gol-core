@@ -1,11 +1,13 @@
-package mf.gol.service;
+package mf.gol.core;
 
+import mf.gol.core.Cell;
+import mf.gol.core.CellNeighbours;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static mf.gol.service.CellStatus.ALIVE;
-import static mf.gol.service.CellStatus.DEAD;
+import static mf.gol.core.CellStatus.ALIVE;
+import static mf.gol.core.CellStatus.DEAD;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;

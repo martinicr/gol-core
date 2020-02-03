@@ -1,11 +1,11 @@
-package mf.gol.service;
+package mf.gol.core;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import static java.util.stream.Collectors.joining;
-import static mf.gol.service.CellStatus.*;
+import static mf.gol.core.CellStatus.*;
 
 public class CellNeighbours {
 

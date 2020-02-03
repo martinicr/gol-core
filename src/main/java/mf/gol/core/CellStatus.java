@@ -1,4 +1,4 @@
-package mf.gol.service;
+package mf.gol.core;
 
 public enum CellStatus {
     DEAD,

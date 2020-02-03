@@ -1,11 +1,6 @@
-package mf.gol.service;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+package mf.gol.core;
 
 import static java.util.Objects.requireNonNull;
-import static java.util.stream.Collectors.joining;
 
 public class Cell {
 

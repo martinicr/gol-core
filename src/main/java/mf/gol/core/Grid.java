@@ -1,7 +1,7 @@
-package mf.gol.service;
+package mf.gol.core;
 
 import static java.util.Optional.ofNullable;
-import static mf.gol.service.CellStatus.*;
+import static mf.gol.core.CellStatus.*;
 
 public class Grid {
 

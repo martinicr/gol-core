@@ -1,5 +1,9 @@
-package mf.gol.service;
+package mf.gol.core;
 
+import mf.gol.core.Cell;
+import mf.gol.core.CellNeighbours;
+import mf.gol.core.CellStatus;
+import mf.gol.core.Grid;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
