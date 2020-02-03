@@ -7,3 +7,4 @@ My Game of Life
 3. Change logic under GameOfLife.nextGeneration
 4. [x] Grid.getTotalOfCells could be removed or changed for something more useful
 5. Test when grid row and column numbers are different
+6. Add SFL4J 
