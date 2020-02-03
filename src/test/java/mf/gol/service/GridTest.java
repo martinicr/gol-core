@@ -11,42 +11,43 @@ public class GridTest {
 
     @Test
     void gridSize2by2IsNotAllowed(){
-        assertThrows(RuntimeException.class, () -> new Grid(2));
+        assertThrows(RuntimeException.class, () -> new Grid(2, 2));
     }
 
     @Test
     void gridSize11by11IsNotAllowed(){
-        assertThrows(RuntimeException.class, () -> new Grid(11));
+        assertThrows(RuntimeException.class, () -> new Grid(11, 11));
     }
 
     @Test
     @DisplayName("Grid size should be at least 3 x 3")
     void gridSizeMinimunIs3by3(){
-        Grid grid = new Grid(3);
+        Grid grid = new Grid(3, 3);
         assertThat(grid.getNumberOfRows()).isEqualTo(3);
         assertThat(grid.getNumberOfColumns()).isEqualTo(3);
     }
 
     @Test
     void addCellToGrid() {
-        Grid grid = new Grid(3);
+        Grid grid = new Grid(3, 3);
         Cell cell = mock(Cell.class);
 
         given(cell.getX()).willReturn(0);
         given(cell.getY()).willReturn(0);
 
         grid.addCell(cell);
+        Cell actual = grid.getCell(0, 0);
 
         verify(cell, times(1)).getX();
         verify(cell, times(1)).getY();
 
-        assertThat(grid.getTotalOfCells()).isEqualTo(1);
+        assertThat(actual).isEqualToComparingFieldByField(cell);
     }
 
     @Test
     @DisplayName("Get cell neighbours when cell position is 0,0")
     void getCellNeighboursWhenPositionIs_0_0() {
-        Grid grid = new Grid(3);
+        Grid grid = new Grid(3, 3);
         Cell c1 = mock(Cell.class);
         Cell c2 = mock(Cell.class);
         Cell c3 = mock(Cell.class);
@@ -73,7 +74,7 @@ public class GridTest {
     @Test
     @DisplayName("Get cell neighbours when cell position is 0,1")
     void getCellNeighboursWhenPositionIs_0_1() {
-        Grid grid = new Grid(3);
+        Grid grid = new Grid(3, 3);
         Cell cell = mock(Cell.class);
         given(cell.getX()).willReturn(0);
         given(cell.getY()).willReturn(1);
@@ -87,7 +88,7 @@ public class GridTest {
     @Test
     @DisplayName("Get cell neighbours when cell position is 0,2")
     void getCellNeighboursWhenPositionIs_0_2() {
-        Grid grid = new Grid(3);
+        Grid grid = new Grid(3, 3);
         Cell cell = mock(Cell.class);
         given(cell.getX()).willReturn(0);
         given(cell.getY()).willReturn(2);
@@ -101,7 +102,7 @@ public class GridTest {
     @Test
     @DisplayName("Get cell neighbours when cell position is 1,0")
     void getCellNeighboursWhenPositionIs_1_0() {
-        Grid grid = new Grid(3);
+        Grid grid = new Grid(3, 3);
         Cell cell = mock(Cell.class);
         given(cell.getX()).willReturn(1);
         given(cell.getY()).willReturn(0);
@@ -115,7 +116,7 @@ public class GridTest {
     @Test
     @DisplayName("Get cell neighbours when cell position is 1,1")
     void getCellNeighboursWhenPositionIs_1_1() {
-        Grid grid = new Grid(3);
+        Grid grid = new Grid(3, 3);
         Cell cell = mock(Cell.class);
         given(cell.getX()).willReturn(1);
         given(cell.getY()).willReturn(1);
@@ -129,7 +130,7 @@ public class GridTest {
     @Test
     @DisplayName("Get cell neighbours when cell position is 1,2")
     void getCellNeighboursWhenPositionIs_1_2() {
-        Grid grid = new Grid(3);
+        Grid grid = new Grid(3, 3);
         Cell cell = mock(Cell.class);
         given(cell.getX()).willReturn(1);
         given(cell.getY()).willReturn(2);
@@ -143,7 +144,7 @@ public class GridTest {
     @Test
     @DisplayName("Get cell neighbours when cell position is 2,0")
     void getCellNeighboursWhenPositionIs_2_0() {
-        Grid grid = new Grid(3);
+        Grid grid = new Grid(3, 3);
         Cell cell = mock(Cell.class);
         given(cell.getX()).willReturn(2);
         given(cell.getY()).willReturn(0);
@@ -157,7 +158,7 @@ public class GridTest {
     @Test
     @DisplayName("Get cell neighbours when cell position is 2,1")
     void getCellNeighboursWhenPositionIs_2_1() {
-        Grid grid = new Grid(3);
+        Grid grid = new Grid(3, 3);
         Cell cell = mock(Cell.class);
         given(cell.getX()).willReturn(2);
         given(cell.getY()).willReturn(1);
@@ -171,7 +172,7 @@ public class GridTest {
     @Test
     @DisplayName("Get cell neighbours when cell position is 2,2")
     void getCellNeighboursWhenPositionIs_2_2() {
-        Grid grid = new Grid(3);
+        Grid grid = new Grid(3, 3);
         Cell cell = mock(Cell.class);
         given(cell.getX()).willReturn(2);
         given(cell.getY()).willReturn(2);
@@ -185,7 +186,7 @@ public class GridTest {
     @Test
     @DisplayName("5x5 Grid Get cell neighbours when cell position is 0,0")
     void getCellNeighboursWhenGridIs5by5AndPositionIs_0_0() {
-        Grid grid = new Grid(5);
+        Grid grid = new Grid(5, 5);
         Cell cell = mock(Cell.class);
         given(cell.getX()).willReturn(0);
         given(cell.getY()).willReturn(0);
@@ -199,7 +200,7 @@ public class GridTest {
     @Test
     @DisplayName("5x5 Grid Get cell neighbours when cell position is 2,2")
     void getCellNeighboursWhenGridIs5by5AndPositionIs_2_2() {
-        Grid grid = new Grid(5);
+        Grid grid = new Grid(5, 5);
         Cell cell = mock(Cell.class);
         given(cell.getX()).willReturn(2);
         given(cell.getY()).willReturn(2);
@@ -208,6 +209,29 @@ public class GridTest {
         assertThat(neighbours.getNumberOfNeighbours()).isEqualTo(8);
         assertThat(neighbours.getNumberOfAliveNeighbours()).isEqualTo(0);
         assertThat(neighbours.getNeighboursCoordinatesToString()).isEqualTo("{1, 1}, {1, 2}, {1, 3}, {2, 1}, {2, 3}, {3, 1}, {3, 2}, {3, 3}");
+    }
+
+    /**
+     * 0 0 0 0 0
+     * 0 0 0 0 0
+     * 0 0 0 0 0
+     * 0 0 0 0 0
+     * 0 0 0 0 0
+     */
+    @Test
+    void printRawGridValues() {
+        Grid grid = Grid.squareGrid(5);
+        grid.addCell(new Cell(2,2, CellStatus.ALIVE));
+        grid.addCell(new Cell(3,3, CellStatus.ALIVE));
+        grid.addCell(new Cell(1,0, CellStatus.DEAD));
+        String actual = grid.printGrid();
+
+        assertThat(actual).isEqualTo("" +
+                "0 0 0 0 0\n" +
+                "0 0 0 0 0\n" +
+                "0 0 1 0 0\n" +
+                "0 0 0 1 0\n" +
+                "0 0 0 0 0\n");
     }
 
 }

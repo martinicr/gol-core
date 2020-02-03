@@ -1,6 +1,7 @@
 package mf.gol.service;
 
 import static java.util.Optional.ofNullable;
+import static mf.gol.service.CellStatus.*;
 
 public class Grid {
 
@@ -8,19 +9,33 @@ public class Grid {
     private static final int MAX_GRID_SIZE = 10;
 
     private Cell[][] gameGrid;
-    private int totalOfCells = 0;
+    private final int rows;
+    private final int columns;
 
-    public Grid(int dimension) {
-        if(dimension < MIN_GRID_SIZE || dimension > MAX_GRID_SIZE) {
+    public Grid(int rows, int columns) {
+        if(rows < MIN_GRID_SIZE || columns > MAX_GRID_SIZE) {
             throw new RuntimeException("Grid dimension is not allowed");
         }
-        this.gameGrid = new Cell[dimension][dimension];
+        this.rows = rows;
+        this.columns = columns;
+        this.gameGrid = new Cell[rows][columns];
+    }
+
+    public static Grid squareGrid(int dimension) {
+        return new Grid(dimension, dimension);
+    }
+
+    public Cell getCell(int x, int y) {
+        //TODO: validaate x, y coordinates
+        if(null == this.gameGrid[x][y]) {
+            return new Cell(x, y);
+        }
+        return this.gameGrid[x][y];
     }
 
     public void addCell(Cell... cells) {
         for(Cell cell: cells) {
             this.gameGrid[cell.getX()][cell.getY()] = cell;
-            this.totalOfCells++;
         }
     }
 
@@ -38,21 +53,48 @@ public class Grid {
                     System.out.println("SAME =>> x " + x + ", row " + row + ", y " + y + ", column " + column);
                     continue;
                 } else {
-                    Cell neighbour = ofNullable(this.gameGrid[row][column])
-                            .orElse(new Cell(row, column, CellStatus.DEAD));
-                    cellNeighbours.addNeighbour(neighbour);
-
-//                    if(this.gameGrid[row][column] == 1) {
-//                        cellNeighbours.addAliveNeighbour();
+//                    try {
+                        System.out.println("OTRO =>> x " + x + ", row " + row + ", y " + y + ", column " + column);
+                        Cell neighbour = ofNullable(this.gameGrid[row][column])
+                                .orElse(new Cell(row, column, DEAD));
+                        cellNeighbours.addNeighbour(neighbour);
+//                    } catch (Exception e) {
+//                        System.out.println("Exp row " + row + " col " + column);
+//                        e.printStackTrace();
 //                    }
                 }
             }
         }
-//        System.out.println("Number of neighbours: " + cell.getNumberOfNeighbours() + ", " +
-//                "Alive: " + cell.getNumberOfAliveNeighbours());
+        System.out.println("Cell neighbours: " + cellNeighbours.getNumberOfNeighbours() + ", " +
+                "Alive: " + cellNeighbours.getNumberOfAliveNeighbours());
         return cellNeighbours;
     }
 
+    public int getNumberOfRows() {
+        return this.rows;
+    }
+
+    public int getNumberOfColumns() {
+        return this.columns;
+    }
+
+    public String printGrid() {
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < this.rows; i++) {
+            for(int j = 0; j < this.columns; j++) {
+                int status = ofNullable(this.gameGrid[i][j])
+                        .map(c -> (c.getCellStatus() == ALIVE) ? 1 : 0)
+                        .orElse(0);
+                sb.append(status);
+
+                if(j != (this.columns - 1)) {
+                    sb.append(" ");
+                }
+            }
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
 
     private int fromRow(int x) {
         return Math.max(x - 1, 0);
@@ -68,18 +110,6 @@ public class Grid {
 
     private int toColumn(int y) {
         return (y + 1 >= this.gameGrid.length) ? y : y + 1;
-    }
-
-    public int getNumberOfRows() {
-        return this.gameGrid.length;
-    }
-
-    public int getNumberOfColumns() {
-        return this.gameGrid.length;
-    }
-
-    public int getTotalOfCells() {
-        return this.totalOfCells;
     }
 
 }

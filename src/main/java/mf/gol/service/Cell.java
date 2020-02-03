@@ -9,14 +9,13 @@ import static java.util.stream.Collectors.joining;
 
 public class Cell {
 
-//    private List<Cell> neighbours;
     private int x;
     private int y;
     private CellStatus cellStatus;
 
-//    public Cell(int x, int y, CellStatus cellStatus) {
-//        this(x, y, cellStatus, new ArrayList<>());
-//    }
+    public Cell(int x, int y) {
+        this(x, y, CellStatus.DEAD);
+    }
 
     public Cell(int x, int y, CellStatus cellStatus) {
         this.x = x;
