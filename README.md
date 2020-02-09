@@ -1,5 +1,6 @@
-My Game of Life
+Game of Life
 ===============
+This is a basic implementation of the Conway's Game of Life game. Game origins, rules and more can be found in the [Wikipedia page](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life). 
 
 ## Tasks
 1. Validate minimun (and max) Grid size
