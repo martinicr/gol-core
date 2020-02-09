@@ -1,5 +1,6 @@
 Game of Life
-===============
+============
+![Java CI](https://github.com/martinicr/gol-core/workflows/Java%20CI/badge.svg)  
 This is a basic implementation of the Conway's Game of Life game. Game origins, rules and more can be found in the [Wikipedia page](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life). 
 
 ## Tasks
