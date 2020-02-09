@@ -1,9 +1,5 @@
 package mf.gol.core;
 
-import mf.gol.core.Cell;
-import mf.gol.core.CellNeighbours;
-import mf.gol.core.CellStatus;
-import mf.gol.core.Grid;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,8 +15,8 @@ public class GridTest {
     }
 
     @Test
-    void gridSize11by11IsNotAllowed(){
-        assertThrows(RuntimeException.class, () -> new Grid(11, 11));
+    void gridSize30by30IsNotAllowed(){
+        assertThrows(RuntimeException.class, () -> new Grid(30, 30));
     }
 
     @Test

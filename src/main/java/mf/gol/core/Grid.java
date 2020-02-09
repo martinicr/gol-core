@@ -6,7 +6,7 @@ import static mf.gol.core.CellStatus.*;
 public class Grid {
 
     private static final int MIN_GRID_SIZE = 3;
-    private static final int MAX_GRID_SIZE = 10;
+    private static final int MAX_GRID_SIZE = 20;
 
     private Cell[][] gameGrid;
     private final int rows;
@@ -48,15 +48,15 @@ public class Grid {
 
         for (int row = fromRow(x); row <= toRow(x); row++) {
             for (int column = fromColumn(y); column <= toColumn(y); column++) {
-                System.out.println("=> row " + row + ", column " + column);
+//                System.out.println("=> row " + row + ", column " + column);
                 if(row == x && column == y) {
-                    System.out.println("SAME =>> x " + x + ", row " + row + ", y " + y + ", column " + column);
+//                    System.out.println("SAME =>> x " + x + ", row " + row + ", y " + y + ", column " + column);
                     continue;
                 } else {
 //                    try {
-                        Cell neighbour = ofNullable(this.gameGrid[row][column])
-                                .orElse(new Cell(row, column, DEAD));
-                        cellNeighbours.addNeighbour(neighbour);
+                    Cell neighbour = ofNullable(this.gameGrid[row][column])
+                            .orElse(new Cell(row, column, DEAD));
+                    cellNeighbours.addNeighbour(neighbour);
 //                    } catch (Exception e) {
 //                        System.out.println("Exp row " + row + " col " + column);
 //                        e.printStackTrace();
@@ -64,8 +64,8 @@ public class Grid {
                 }
             }
         }
-        System.out.println("Cell neighbours: " + cellNeighbours.getNumberOfNeighbours() + ", " +
-                "Alive: " + cellNeighbours.getNumberOfAliveNeighbours());
+//        System.out.println("Cell neighbours: " + cellNeighbours.getNumberOfNeighbours() + ", " +
+//                "Alive: " + cellNeighbours.getNumberOfAliveNeighbours());
         return cellNeighbours;
     }
 

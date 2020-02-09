@@ -13,6 +13,7 @@ public class GameOfLife {
                 newState.addCell(newCell);
             }
         }
+
         return newState;
     }
 
